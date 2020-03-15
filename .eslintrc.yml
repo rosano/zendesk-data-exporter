@@ -1,0 +1,24 @@
+extends: airbnb
+env:
+  es6: true
+  mocha: true
+  node: true
+rules:
+  indent: [2, 2, { SwitchCase: 1, VariableDeclarator: 1, outerIIFEBody: 1 }]
+  max-len:
+    [
+      2,
+      160,
+      4,
+      {
+        ignoreUrls: true,
+        ignoreComments: false,
+        ignoreStrings: true,
+        ignoreTemplateLiterals: true,
+      },
+    ]
+  no-param-reassign: [1, { props: false }]
+  no-underscore-dangle: [2, { allowAfterThis: true, allowAfterSuper: true }]
+  class-methods-use-this: [0]
+  no-plusplus: [0]
+  no-console: [0]
