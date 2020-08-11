@@ -9,7 +9,7 @@ const config = {
   domain: 'caremedtravelportal.zendesk.com',
 };
 
-const baseFile = '/Users/woraphol/github/woraphol-j/zendesk-data-exporter/results';
+const baseFile = __dirname + '/results';
 
 const httpClient = axios.create({
   timeout: 12000,
