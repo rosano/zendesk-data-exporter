@@ -7,6 +7,8 @@ const {
 
 const config = {
   domain: 'caremedtravelportal.zendesk.com',
+  username: 'XXXXX',
+  password: 'XXXXX',
 };
 
 const baseFile = __dirname + '/results';
@@ -15,7 +17,10 @@ const httpClient = axios.create({
   timeout: 12000,
   headers: {
     'Content-Type': 'application/json',
-    Authorization: '',
+  },
+  auth: {
+    username: config.username,
+    password: config.password,
   },
 });
 
