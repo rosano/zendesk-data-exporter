@@ -5,6 +5,9 @@ const {
   filter, map, compact, flatten, range,
 } = require('lodash');
 
+const config = {
+  domain: 'caremedtravelportal.zendesk.com',
+};
 
 const baseFile = '/Users/woraphol/github/woraphol-j/zendesk-data-exporter/results';
 
@@ -22,7 +25,7 @@ function sleep(ms) {
 // async function listAllTickets(page) {
 //   let result;
 //   try {
-//     result = await httpClient.get(`https://caremedtravelportal.zendesk.com/api/v2/tickets.json?page=${page}`);
+//     result = await httpClient.get(`https://${config.domain}/api/v2/tickets.json?page=${page}`);
 //   } catch (err) {
 //     console.error(err.response.data);
 //     throw new Error(err);
@@ -33,7 +36,7 @@ function sleep(ms) {
 async function getTicket(ticketId) {
   let result;
   try {
-    result = await httpClient.get(`https://caremedtravelportal.zendesk.com/api/v2/tickets/${ticketId}.json`);
+    result = await httpClient.get(`https://${config.domain}/api/v2/tickets/${ticketId}.json`);
   } catch (err) {
     if (err.response.status === 404) {
       return null;
@@ -47,7 +50,7 @@ async function getTicket(ticketId) {
 async function downloadTicket(ticketId, targetFile) {
   let result;
   try {
-    result = await httpClient.get(`https://caremedtravelportal.zendesk.com/api/v2/tickets/${ticketId}.json`);
+    result = await httpClient.get(`https://${config.domain}/api/v2/tickets/${ticketId}.json`);
   } catch (err) {
     console.error(err.response.data);
   }
@@ -58,7 +61,7 @@ async function downloadTicketFields() {
   let result;
   try {
     result = await httpClient.get(
-      'https://caremedtravelportal.zendesk.com/api/v2/ticket_fields.json',
+      `https://${config.domain}/api/v2/ticket_fields.json`,
     );
   } catch (err) {
     console.error(err.response.data);
@@ -70,7 +73,7 @@ async function downloadUsers() {
   let result;
   try {
     result = await httpClient.get(
-      'https://caremedtravelportal.zendesk.com/api/v2/users.json',
+      `https://${config.domain}/api/v2/users.json`,
     );
   } catch (err) {
     console.error(err.response.data);
@@ -82,7 +85,7 @@ async function downloadComments(ticketId, targetFolder) {
   let result;
   try {
     result = await httpClient.get(
-      `https://caremedtravelportal.zendesk.com/api/v2/tickets/${ticketId}/comments.json`,
+      `https://${config.domain}/api/v2/tickets/${ticketId}/comments.json`,
     );
     if (result.data.next_page) {
       console.error('it has next page', ticketId);
